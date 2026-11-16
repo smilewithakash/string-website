@@ -43,7 +43,18 @@ cd website
 python -m http.server 8080   # then open http://127.0.0.1:8080
 ```
 
-## Host on GitHub Pages
+## Live site (2026-11-16)
+
+Published at **https://string.social** (and `www`), HTTPS enforced, from the public repository
+`smilewithakash/string-website` (branch `main`, root). It holds only this folder's files; the
+app's code stays private. DNS at GoDaddy: four `A` records for `@` to GitHub Pages
+(185.199.108.153 / .109 / .110 / .111) and `www` CNAME to `smilewithakash.github.io`.
+
+To publish changes: copy this folder's contents over a clone of `string-website`, commit and
+push (`gh repo clone smilewithakash/string-website`; GitHub Pages redeploys in about a minute).
+Keep the `CNAME` file.
+
+## Host on GitHub Pages (how it was set up)
 
 Simplest: a separate public repository that holds only this folder.
 
