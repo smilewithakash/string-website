@@ -403,6 +403,9 @@ p {
   margin: -600px 0 0 -600px;
   pointer-events: none;
   z-index: 0;
+  /* The radar fades out well before the strings along the bottom, so they never cross. */
+  -webkit-mask: radial-gradient(closest-side, #000 64%, transparent 88%);
+  mask: radial-gradient(closest-side, #000 64%, transparent 88%);
 }
 .ring {
   position: absolute;
@@ -452,6 +455,146 @@ p {
   opacity: 0.4;
   animation: blip 6s linear infinite;
   animation-delay: var(--d, 0s);
+}
+
+/* People on the hero radar: made-up faces that light up as the beam passes, then dim. */
+.face {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(var(--a)) translateY(calc(var(--r) * -1));
+}
+.face > span {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2);
+  transform: rotate(calc(var(--a) * -1)); /* keep the face upright */
+}
+.face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--c);
+  box-shadow: 0 0 0 3px rgba(16, 16, 20, 0.6);
+  filter: brightness(0.55) saturate(0.75);
+  animation: face-lit 6s linear infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes face-lit {
+  0% {
+    filter: brightness(1.12) saturate(1.05);
+    transform: scale(1.12);
+    box-shadow: 0 0 0 3px rgba(16, 16, 20, 0.6), 0 0 34px 6px var(--c);
+  }
+  14% {
+    transform: scale(1);
+  }
+  30% {
+    filter: brightness(0.95) saturate(1);
+    box-shadow: 0 0 0 3px rgba(16, 16, 20, 0.6), 0 0 18px 1px var(--c);
+  }
+  65%,
+  100% {
+    filter: brightness(0.55) saturate(0.75);
+    transform: scale(1);
+    box-shadow: 0 0 0 3px rgba(16, 16, 20, 0.6), 0 0 0 0 transparent;
+  }
+}
+/* The ring that pulses round someone when a string reaches them. */
+.face b {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--c);
+  opacity: 0;
+  animation: reached 12s var(--ease) infinite;
+  animation-delay: var(--l, 0s);
+}
+@keyframes reached {
+  0%,
+  6% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  9% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  22% {
+    opacity: 0.6;
+    transform: scale(1.18);
+  }
+  26%,
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+.links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.links path {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  animation: link 12s var(--ease) infinite;
+  animation-delay: var(--d); /* set on each string's group */
+}
+.links path.glow {
+  stroke-width: 7;
+}
+@keyframes link {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  8%,
+  20% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  25%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+.links path.glow {
+  animation-name: link-glow;
+}
+@keyframes link-glow {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0.45;
+  }
+  8%,
+  20% {
+    stroke-dashoffset: 0;
+    opacity: 0.45;
+  }
+  25%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.bubbles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .waves {

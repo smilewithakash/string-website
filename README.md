@@ -15,9 +15,11 @@ assets/               css, js, Inter font (SIL OFL, licence included), images
 
 Brand: colours from `app/lib/core/theme/app_colors.dart`, the Inter font the app ships and
 the logo redrawn as `assets/img/logo.svg`. The hero is the brand banner drawn live in SVG and
-CSS (radar rings, a sweeping beam, people lighting up as it passes, strings with drifting
-orbs, the logo drawing itself in), so it is sharp at any size, smooth, a few kilobytes, and
-still for people who turn animations off. `og.png` (the link preview image) is a frame of the
+CSS (radar rings that fade before the strings below, a sweeping beam, made-up AI-generated
+faces from `assets/img/faces/` that light up as it passes, a string drawn from the logo to one
+of them every 3 s, strings with drifting orbs, the logo drawing itself in) plus coloured soap
+bubbles on a canvas (`site.js`, click to pop) that keep clear of the text, matching the app's
+onboarding (2026-11-17). Everything is still for people who turn animations off. `og.png` (the link preview image) is a frame of the
 original banner GIF. The site loads nothing from other servers: no fonts, analytics or
 trackers.
 

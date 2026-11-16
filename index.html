@@ -73,6 +73,8 @@
   <!-- Hero: the brand banner, drawn live (radar rings, a sweeping beam, people lighting up
        as it passes, strings drifting below). -->
   <section class="stage" aria-labelledby="hero-title">
+    <!-- Soap bubbles that appear, drift and pop around the text (site.js); click to pop. -->
+    <canvas class="bubbles" aria-hidden="true"></canvas>
     <svg class="waves" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
         <linearGradient id="w-a" x1="0" y1="0" x2="1" y2="0">
@@ -115,20 +117,35 @@
           <span class="ring" style="--d:540px"></span>
           <span class="ring" style="--d:720px"></span>
           <span class="ring" style="--d:920px"></span>
-          <span class="ring" style="--d:1140px"></span>
           <span class="beam"></span>
-          <!-- People: --a angle from the top, --r distance, --d = a/360*6s - 6s so each lights
-               up as the beam reaches it. Violet shares an interest; pale does not. -->
-          <span class="blip" style="--a:25deg;--r:250px;--d:-5.58s"><i></i></span>
-          <span class="blip" style="--a:70deg;--r:390px;--d:-4.83s;--c:#E9E4F5;--s:8px"><i></i></span>
-          <span class="blip" style="--a:118deg;--r:300px;--d:-4.03s"><i></i></span>
-          <span class="blip" style="--a:140deg;--r:540px;--d:-3.67s;--c:#E9E4F5;--s:7px"><i></i></span>
-          <span class="blip" style="--a:162deg;--r:440px;--d:-3.30s;--s:12px"><i></i></span>
-          <span class="blip" style="--a:222deg;--r:470px;--d:-2.30s;--c:#E9E4F5;--s:8px"><i></i></span>
-          <span class="blip" style="--a:248deg;--r:420px;--d:-1.87s"><i></i></span>
-          <span class="blip" style="--a:292deg;--r:335px;--d:-1.13s;--c:#E9E4F5;--s:9px"><i></i></span>
-          <span class="blip" style="--a:318deg;--r:520px;--d:-0.70s;--s:12px"><i></i></span>
-          <span class="blip" style="--a:345deg;--r:190px;--d:-0.25s;--c:#E9E4F5;--s:7px"><i></i></span>
+          <!-- Strings reaching out from the logo to someone, one every 3 s (12 s cycle).
+               Coordinates in the 1200 px art box; the logo's centre is (600, 600). -->
+          <svg class="links" viewBox="0 0 1200 1200">
+            <defs>
+              <linearGradient id="l-1" gradientUnits="userSpaceOnUse" x1="676" y1="575" x2="791" y2="538"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#60A5FA"/></linearGradient>
+              <linearGradient id="l-2" gradientUnits="userSpaceOnUse" x1="528" y1="566" x2="364" y2="490"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#E879F9"/></linearGradient>
+              <linearGradient id="l-3" gradientUnits="userSpaceOnUse" x1="646" y1="535" x2="725" y2="422"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#E879F9"/></linearGradient>
+              <linearGradient id="l-4" gradientUnits="userSpaceOnUse" x1="566" y1="528" x2="522" y2="432"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>
+              <filter id="l-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
+            </defs>
+            <g style="--d:0s"><path class="glow" d="M676 575 Q740 577 791 538" stroke="#60A5FA" pathLength="1" filter="url(#l-glow)"/><path d="M676 575 Q740 577 791 538" stroke="url(#l-1)" pathLength="1"/></g>
+            <g style="--d:-9s"><path class="glow" d="M528 566 Q460 499 364 490" stroke="#E879F9" pathLength="1" filter="url(#l-glow)"/><path d="M528 566 Q460 499 364 490" stroke="url(#l-2)" pathLength="1"/></g>
+            <g style="--d:-6s"><path class="glow" d="M646 535 Q705 493 725 422" stroke="#E879F9" pathLength="1" filter="url(#l-glow)"/><path d="M646 535 Q705 493 725 422" stroke="url(#l-3)" pathLength="1"/></g>
+            <g style="--d:-3s"><path class="glow" d="M566 528 Q561 472 522 432" stroke="#8B5CF6" pathLength="1" filter="url(#l-glow)"/><path d="M566 528 Q561 472 522 432" stroke="url(#l-4)" pathLength="1"/></g>
+          </svg>
+          <!-- People (made-up, AI-generated): --a angle from the top, --r distance, --s size,
+               --c ring colour, --d = a/360*6s - 6s so each lights up as the beam reaches it.
+               --l (on the four the strings reach) times the ring that pulses when it arrives. -->
+          <span class="face" style="--a:335deg;--r:215px;--s:52px;--c:#8B5CF6;--d:-0.42s;--l:-3s"><span><img src="assets/img/faces/01.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:35deg;--r:250px;--s:58px;--c:#E879F9;--d:-5.42s;--l:-6s"><span><img src="assets/img/faces/02.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:72deg;--r:230px;--s:50px;--c:#60A5FA;--d:-4.8s;--l:0s"><span><img src="assets/img/faces/03.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:100deg;--r:400px;--s:60px;--c:#F9A8D4;--d:-4.33s"><span><img src="assets/img/faces/04.jpg" alt=""></span></span>
+          <span class="face" style="--a:118deg;--r:430px;--s:54px;--c:#818CF8;--d:-4.03s"><span><img src="assets/img/faces/05.jpg" alt=""></span></span>
+          <span class="face" style="--a:242deg;--r:430px;--s:56px;--c:#B9A6F6;--d:-1.97s"><span><img src="assets/img/faces/06.jpg" alt=""></span></span>
+          <span class="face" style="--a:262deg;--r:390px;--s:60px;--c:#60A5FA;--d:-1.63s"><span><img src="assets/img/faces/07.jpg" alt=""></span></span>
+          <span class="face" style="--a:295deg;--r:290px;--s:52px;--c:#E879F9;--d:-1.08s;--l:-9s"><span><img src="assets/img/faces/08.jpg" alt=""><b></b></span></span>
+          <span class="blip" style="--a:15deg;--r:390px;--d:-5.75s;--c:#E9E4F5;--s:8px"><i></i></span>
+          <span class="blip" style="--a:315deg;--r:420px;--d:-0.75s;--s:8px"><i></i></span>
         </div>
         <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
           <defs>
