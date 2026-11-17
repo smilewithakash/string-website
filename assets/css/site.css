@@ -605,6 +605,9 @@ p {
   height: 260px;
   z-index: 0;
   pointer-events: none;
+  /* On wide screens the right string climbs past the top of this box: let it (and its glow)
+     carry on instead of being cut off in a straight line. */
+  overflow: visible;
 }
 
 .wordmark {
