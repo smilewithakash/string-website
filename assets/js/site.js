@@ -71,24 +71,43 @@
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const box = keepClear.getBoundingClientRect();
       const base = stage.getBoundingClientRect();
-      clear = {
-        left: box.left - base.left - 16,
-        right: box.right - base.left + 16,
-        top: box.top - base.top - 16,
-        bottom: box.bottom - base.top + 16,
+      const area = (el, pad) => {
+        const box = el.getBoundingClientRect();
+        return {
+          left: box.left - base.left - pad,
+          right: box.right - base.left + pad,
+          top: box.top - base.top - pad,
+          bottom: box.bottom - base.top + pad,
+        };
       };
+      if (width < 700) {
+        // Phones: the text spans the width, so keep clear of just the text and the logo;
+        // bubbles float round the radar and down by the strings.
+        const first = area(stage.querySelector(".wordmark"), 12);
+        const last = area(stage.querySelector(".stage .actions"), 12);
+        clear = [
+          { left: 0, right: width, top: first.top, bottom: last.bottom },
+          area(stage.querySelector(".mark"), 8),
+        ];
+      } else {
+        clear = [area(keepClear, 16)];
+      }
+      // Never over the people on the radar.
+      stage.querySelectorAll(".face img").forEach((img) => clear.push(area(img, 10)));
     };
+    const touches = (x, y, r) =>
+      clear.some((c) => x + r > c.left && x - r < c.right && y + r > c.top && y - r < c.bottom);
     const spawn = () => {
       const max = width < 700 ? 6 : 11;
       if (bubbles.filter((b) => b.popped == null).length >= max) return;
       for (let attempt = 0; attempt < 14; attempt++) {
         const r = (width < 700 ? 8 : 12) + Math.random() * (width < 700 ? 18 : 30);
         const x = r + Math.random() * (width - 2 * r);
-        const y = r + 24 + Math.random() * (height - 2 * r - 140); // clear of the top, above the strings
-        const inClear =
-          x + r > clear.left && x - r < clear.right && y + r > clear.top && y - r < clear.bottom;
+        // Clear of the top; above the strings on wide screens, among them on phones.
+        const bottomGap = width < 700 ? 40 : 140;
+        const y = r + 24 + Math.random() * (height - 2 * r - 24 - bottomGap);
+        const inClear = touches(x, y, r);
         const crowded = bubbles.some(
           (b) => b.popped == null && Math.hypot(b.x - x, b.y - y) < b.r + r + 10
         );
@@ -231,7 +250,8 @@
         } else {
           b.x += Math.sin(time * 1.7 + b.phase) * 6 * dt;
           b.y -= b.rise * dt;
-          if (b.age >= b.life) pop(b);
+          // Pops on its own, or when it drifts into the text, a button or a face.
+          if (b.age >= b.life || (b.age > 0.6 && touches(b.x, b.y, b.r * 0.9))) pop(b);
         }
       }
       for (let i = bubbles.length - 1; i >= 0; i--) {
@@ -253,6 +273,7 @@
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
     canvas.addEventListener("pointerdown", (event) => {
       const box = canvas.getBoundingClientRect();
       const x = event.clientX - box.left;

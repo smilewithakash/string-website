@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icon-32.png">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
   <link rel="preload" href="assets/fonts/Inter-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css?v=20261117">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261117b">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -133,17 +133,31 @@
             <g style="--d:-6s"><path class="glow" d="M646 535 Q705 493 725 422" stroke="#E879F9" pathLength="1" filter="url(#l-glow)"/><path d="M646 535 Q705 493 725 422" stroke="url(#l-3)" pathLength="1"/></g>
             <g style="--d:-3s"><path class="glow" d="M566 528 Q561 472 522 432" stroke="#8B5CF6" pathLength="1" filter="url(#l-glow)"/><path d="M566 528 Q561 472 522 432" stroke="url(#l-4)" pathLength="1"/></g>
           </svg>
+          <!-- The same strings for phones, where the people sit in a tight arc above the logo. -->
+          <svg class="links m" viewBox="0 0 1200 1200">
+            <defs>
+              <linearGradient id="lm-1" gradientUnits="userSpaceOnUse" x1="680" y1="511" x2="717" y2="470"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#60A5FA"/></linearGradient>
+              <linearGradient id="lm-2" gradientUnits="userSpaceOnUse" x1="520" y1="511" x2="463" y2="448"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#E879F9"/></linearGradient>
+              <linearGradient id="lm-3" gradientUnits="userSpaceOnUse" x1="629" y1="484" x2="650" y2="401"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#E879F9"/></linearGradient>
+              <linearGradient id="lm-4" gradientUnits="userSpaceOnUse" x1="571" y1="484" x2="558" y2="430"><stop offset="0" stop-color="#F4F2F8"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>
+            </defs>
+            <g style="--d:0s"><path class="glow" d="M680 511 Q706 497 717 470" stroke="#60A5FA" pathLength="1" filter="url(#l-glow)"/><path d="M680 511 Q706 497 717 470" stroke="url(#lm-1)" pathLength="1"/></g>
+            <g style="--d:-9s"><path class="glow" d="M520 511 Q503 469 463 448" stroke="#E879F9" pathLength="1" filter="url(#l-glow)"/><path d="M520 511 Q503 469 463 448" stroke="url(#lm-2)" pathLength="1"/></g>
+            <g style="--d:-6s"><path class="glow" d="M629 484 Q654 446 650 401" stroke="#E879F9" pathLength="1" filter="url(#l-glow)"/><path d="M629 484 Q654 446 650 401" stroke="url(#lm-3)" pathLength="1"/></g>
+            <g style="--d:-3s"><path class="glow" d="M571 484 Q574 455 558 430" stroke="#8B5CF6" pathLength="1" filter="url(#l-glow)"/><path d="M571 484 Q574 455 558 430" stroke="url(#lm-4)" pathLength="1"/></g>
+          </svg>
           <!-- People (made-up, AI-generated): --a angle from the top, --r distance, --s size,
                --c ring colour, --d = a/360*6s - 6s so each lights up as the beam reaches it.
-               --l (on the four the strings reach) times the ring that pulses when it arrives. -->
-          <span class="face" style="--a:335deg;--r:215px;--s:52px;--c:#8B5CF6;--d:-0.42s;--l:-3s"><span><img src="assets/img/faces/01.jpg" alt=""><b></b></span></span>
-          <span class="face" style="--a:35deg;--r:250px;--s:58px;--c:#E879F9;--d:-5.42s;--l:-6s"><span><img src="assets/img/faces/02.jpg" alt=""><b></b></span></span>
-          <span class="face" style="--a:72deg;--r:230px;--s:50px;--c:#60A5FA;--d:-4.8s;--l:0s"><span><img src="assets/img/faces/03.jpg" alt=""><b></b></span></span>
-          <span class="face" style="--a:100deg;--r:400px;--s:60px;--c:#F9A8D4;--d:-4.33s"><span><img src="assets/img/faces/04.jpg" alt=""></span></span>
-          <span class="face" style="--a:118deg;--r:430px;--s:54px;--c:#818CF8;--d:-4.03s"><span><img src="assets/img/faces/05.jpg" alt=""></span></span>
-          <span class="face" style="--a:242deg;--r:430px;--s:56px;--c:#B9A6F6;--d:-1.97s"><span><img src="assets/img/faces/06.jpg" alt=""></span></span>
-          <span class="face" style="--a:262deg;--r:390px;--s:60px;--c:#60A5FA;--d:-1.63s"><span><img src="assets/img/faces/07.jpg" alt=""></span></span>
-          <span class="face" style="--a:295deg;--r:290px;--s:52px;--c:#E879F9;--d:-1.08s;--l:-9s"><span><img src="assets/img/faces/08.jpg" alt=""><b></b></span></span>
+               --l (on the four the strings reach) times the ring that pulses when it arrives.
+               --am, --rm, --dm: the same on phones (a tight arc above the logo). -->
+          <span class="face" style="--a:335deg;--r:215px;--s:52px;--c:#8B5CF6;--d:-0.42s;--l:-3s;--am:346deg;--rm:205px;--dm:-0.23s"><span><img src="assets/img/faces/01.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:35deg;--r:250px;--s:58px;--c:#E879F9;--d:-5.42s;--l:-6s;--am:14deg;--rm:235px;--dm:-5.77s"><span><img src="assets/img/faces/02.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:72deg;--r:230px;--s:50px;--c:#60A5FA;--d:-4.8s;--l:0s;--am:42deg;--rm:205px;--dm:-5.3s"><span><img src="assets/img/faces/03.jpg" alt=""><b></b></span></span>
+          <span class="face" style="--a:100deg;--r:400px;--s:60px;--c:#F9A8D4;--d:-4.33s;--am:70deg;--rm:235px;--dm:-4.83s"><span><img src="assets/img/faces/04.jpg" alt=""></span></span>
+          <span class="face" style="--a:118deg;--r:430px;--s:54px;--c:#818CF8;--d:-4.03s;--am:98deg;--rm:205px;--dm:-4.37s"><span><img src="assets/img/faces/05.jpg" alt=""></span></span>
+          <span class="face" style="--a:242deg;--r:430px;--s:56px;--c:#B9A6F6;--d:-1.97s;--am:262deg;--rm:230px;--dm:-1.63s"><span><img src="assets/img/faces/06.jpg" alt=""></span></span>
+          <span class="face" style="--a:262deg;--r:390px;--s:60px;--c:#60A5FA;--d:-1.63s;--am:290deg;--rm:205px;--dm:-1.17s"><span><img src="assets/img/faces/07.jpg" alt=""></span></span>
+          <span class="face" style="--a:295deg;--r:290px;--s:52px;--c:#E879F9;--d:-1.08s;--l:-9s;--am:318deg;--rm:235px;--dm:-0.7s"><span><img src="assets/img/faces/08.jpg" alt=""><b></b></span></span>
           <span class="blip" style="--a:15deg;--r:390px;--d:-5.75s;--c:#E9E4F5;--s:8px"><i></i></span>
           <span class="blip" style="--a:315deg;--r:420px;--d:-0.75s;--s:8px"><i></i></span>
         </div>
@@ -498,6 +512,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=20261117" defer></script>
+<script src="assets/js/site.js?v=20261117b" defer></script>
 </body>
 </html>
