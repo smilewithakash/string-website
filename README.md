@@ -33,8 +33,9 @@ anything still to fill, and `Select-String -Path website\*.html -Pattern 'todo'`
 
 Have the privacy policy and terms read by someone qualified before launch. They describe what
 the app does today (checked against the code on 2026-11-16) and make two commitments that the
-server set-up must keep: server logs kept for at most 14 days, and data requests answered within
-30 days.
+server set-up must keep: no access logs and no IP addresses in the server's logs (2026-11-20:
+`docker-compose.public.yml` runs uvicorn with `--no-access-log`), and data requests answered
+within 30 days. It names the server as our own computer in India and Tailscale as the relay.
 
 ## Preview locally
 
